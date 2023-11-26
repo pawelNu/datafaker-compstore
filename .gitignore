@@ -37,3 +37,4 @@ build/
 ### Mac OS ###
 .DS_Store
 /.idea/
+/src/main/java/com/pawelnu/datafaker/service/FilePaths.java
