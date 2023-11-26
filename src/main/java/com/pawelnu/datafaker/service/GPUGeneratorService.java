@@ -2,7 +2,6 @@ package com.pawelnu.datafaker.service;
 
 import com.pawelnu.datafaker.util.FakeData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GPUGeneratorService {
