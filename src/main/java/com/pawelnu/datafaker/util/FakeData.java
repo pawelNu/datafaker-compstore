@@ -1,5 +1,6 @@
 package com.pawelnu.datafaker.util;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
@@ -11,7 +12,7 @@ public class FakeData {
      * @param max range to.
      * @return Random int from chosen range.
      */
-    public static int getRandomInt(int min, int max) {
+    public static int getIntBetween(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
@@ -25,7 +26,9 @@ public class FakeData {
     public static double getRandomDouble(double min, double max) {
         Random random = new Random();
         double randomValue = min + (max - min) * random.nextDouble();
-        return roundToSingleDecimal(Math.round(randomValue * 10.0) / 10.0);
+        BigDecimal a = new BigDecimal(randomValue);
+        BigDecimal roundOff = a.setScale(1, BigDecimal.ROUND_HALF_EVEN);
+        return roundOff.doubleValue();
     }
 
     /**

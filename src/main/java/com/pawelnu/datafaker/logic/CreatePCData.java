@@ -22,7 +22,7 @@ public class CreatePCData {
         List<GraphicsCardBrand> graphicsCardBrands = readGraphicsCardBrandsFromCSV(pcGraphicsCardBrandsFile);
         List<OperatingSystem> operatingSystems = readOperatingSystemsFromCSV(pcOperatingSystemsFile);
 
-        List<PC> pcs = generatePCs(processorBrands, graphicsCardBrands, operatingSystems,100);
+        List<PC> pcs = generatePCs(processorBrands, graphicsCardBrands, operatingSystems,73);
 
         writePCsToCSV(pcs, "pcs.csv");
     }

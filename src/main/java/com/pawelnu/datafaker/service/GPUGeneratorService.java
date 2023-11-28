@@ -21,8 +21,8 @@ public class GPUGeneratorService {
 
     private static String generateNVIDIA() {
         // NVIDIA GeForce RTX 3060
-        int num1 = FakeData.getRandomInt(2,4);
-        int num2 = FakeData.getRandomInt(6,9);
+        int num1 = FakeData.getIntBetween(2,4);
+        int num2 = FakeData.getIntBetween(6,9);
         List<String> sufixList = List.of("", " Super", " Ti");
         String suffix = FakeData.getRandomElement(sufixList);
 
@@ -39,8 +39,8 @@ public class GPUGeneratorService {
 
     private static String generateAMD() {
         // AMD Radeon RX 6600
-        int num1 = FakeData.getRandomInt(5,9);
-        int num2 = FakeData.getRandomInt(5,9);
+        int num1 = FakeData.getIntBetween(5,9);
+        int num2 = FakeData.getIntBetween(5,9);
         List<String> sufixList = List.of("", " XT");
         String suffix = FakeData.getRandomElement(sufixList);
 

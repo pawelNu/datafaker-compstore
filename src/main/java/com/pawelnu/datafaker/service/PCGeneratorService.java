@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class PCGeneratorService {
@@ -86,11 +87,13 @@ public class PCGeneratorService {
         Faker faker = new Faker();
 
         for (int i = 0; i < numberOfRecords; i++) {
-            int indexCPU = i % processorBrands.size();
+            int randomNumber = new Random().nextInt(101);
+
+            int indexCPU = randomNumber % processorBrands.size();
             String cpuBrandName = processorBrands.get(indexCPU).getName();
 
-            int indexGPU = i % graphicsCardBrands.size();
-            String gpuBrandName = graphicsCardBrands.get(indexCPU).getName();
+            int indexGPU = randomNumber % graphicsCardBrands.size();
+            String gpuBrandName = graphicsCardBrands.get(indexGPU).getName();
 
             PC pc = new PC();
             pc.setId(UUID.randomUUID());
@@ -98,11 +101,31 @@ public class PCGeneratorService {
             pc.setProcessorName("\"" + CPUGeneratorService.generateCPUName(cpuBrandName) + "\"");
             pc.setGraphicsCardBrandUuid(graphicsCardBrands.get(indexGPU).getId());
             pc.setGraphicsCardName("\"" + GPUGeneratorService.generateGPUName(gpuBrandName) + "\"");
-            pc.setRamGbCapacity(faker.number().numberBetween(8, 64));
-            pc.setDriveGbCapacity(faker.number().numberBetween(256, 2048));
-            pc.setDriveType("SSD");
+
+            int[] numbers = {8, 16, 32, 64};
+
+            // Inicjalizacja obiektu klasy Random
+            Random random = new Random();
+
+            // Losowe wybranie liczby ze zbioru
+            int randomIndex = random.nextInt(numbers.length);
+            int ram = numbers[randomIndex];
+
+
+            pc.setRamGbCapacity(ram);
+
+            int[] numbers2 = {256, 512, 1024, 2048, 4096};
+
+            // Losowe wybranie liczby ze zbioru
+            randomIndex = random.nextInt(numbers2.length);
+            int driveGB = numbers2[randomIndex];
+
+            pc.setDriveGbCapacity(driveGB);
+            pc.setDriveType(new Random().nextInt(51) % 3 == 0 ? "SSD" : "HDD");
             pc.setOperatingSystemUuid(operatingSystems.get(i % operatingSystems.size()).getId());
-            pc.setPrice(faker.number().numberBetween(900, 9999) + "." + faker.number().numberBetween(10, 99));
+            int basePrice = 500;
+            int price = basePrice + 50 * new Random().nextInt(100) - 1;
+            pc.setPrice(price + "." + 99);
 
             pcs.add(pc);
         }
